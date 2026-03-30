@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vivek Akkisetty — Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="#hero" class="nav-logo">
+      <span class="logo-v">V</span><span class="logo-a">A</span>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" class="nav-item" data-num="01">About</a></li>
+      <li><a href="#skills" class="nav-item" data-num="02">Skills</a></li>
+      <li><a href="#projects" class="nav-item" data-num="03">Projects</a></li>
+      <li><a href="#education" class="nav-item" data-num="04">Education</a></li>
+      <li><a href="#contact" class="nav-item" data-num="05">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Hire Me</a>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-noise"></div>
+    <div class="hero-grain"></div>
+
+    <div class="hero-left">
+      <div class="avatar-wrap reveal">
+        <div class="avatar-ring-outer"></div>
+        <div class="avatar-ring-inner"></div>
+        <img
+          src="images/vivek.jpg"
+          alt="Vivek Akkisetty"
+          class="avatar-photo"
+          onerror="this.style.display='none'; document.querySelector('.avatar-fallback').style.display='flex';"
+        />
+        <div class="avatar-fallback">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <div class="avatar-badge">
+          <i class="fa-solid fa-star"></i>
+          <span>8.9 CGPA</span>
+        </div>
+      </div>
+
+      <div class="hero-socials reveal delay-3">
+        <a href="https://www.linkedin.com/in/vivekakkisetty" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="mailto:vivekakkisetty@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="tel:9392514439" title="Phone"><i class="fa-solid fa-phone"></i></a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <span class="hero-eyebrow reveal">Hello, I'm</span>
+      <h1 class="hero-name">
+        <span class="name-line reveal delay-1">Vivek</span>
+        <span class="name-line name-accent reveal delay-2">Akkisetty</span>
+      </h1>
+      <div class="hero-role reveal delay-3">
+        <span class="role-pill">B.Tech AI &amp; ML</span>
+        <span class="role-divider">·</span>
+        <span class="role-pill">Full Stack Developer</span>
+      </div>
+      <p class="hero-tagline reveal delay-4">"Turning ideas into impactful<br/>digital solutions"</p>
+      <div class="hero-actions reveal delay-5">
+        <a href="#contact" class="btn-primary">
+          <span>Let's Talk</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="#projects" class="btn-ghost">View Work</a>
+      </div>
+    </div>
+
+    <div class="hero-bg-word" aria-hidden="true">VIVEK</div>
+    <div class="scroll-cue">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section about" id="about">
+    <div class="section-track">
+      <div class="section-num">01</div>
+    </div>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">About Me</span>
+        <h2 class="section-title">Who I Am</h2>
+      </div>
+
+      <div class="about-layout">
+        <div class="about-text reveal delay-1">
+          <p>
+            I am a <strong>2nd-year B.Tech AI/ML student</strong> at Saveetha University,
+            maintaining a <strong>CGPA of 8.9</strong>. My passion lies at the intersection
+            of intelligent systems and elegant user interfaces — I love building things that
+            are not only smart, but beautiful to use.
+          </p>
+          <p>
+            Currently mastering <strong>full stack development</strong> while deepening my
+            understanding of AI/ML concepts. I thrive in fast-paced environments where every
+            contribution matters and innovative thinking is celebrated.
+          </p>
+          <blockquote class="about-quote">
+            "Continuous learning + consistent effort = exceptional results."
+          </blockquote>
+          <p class="about-open">Open to internships, hackathons, and collaborations.</p>
+        </div>
+
+        <div class="about-stats-panel reveal delay-2">
+          <div class="stat-big">
+            <span class="stat-val">8.9</span>
+            <span class="stat-unit">/ 10</span>
+            <span class="stat-lbl">CGPA</span>
+            <div class="stat-bar"><div class="stat-fill stat-fill-89"></div></div>
+          </div>
+          <div class="stat-row">
+            <div class="stat-mini">
+              <i class="fa-solid fa-graduation-cap"></i>
+              <span class="sm-val">2nd Year</span>
+              <span class="sm-lbl">B.Tech</span>
+            </div>
+            <div class="stat-mini">
+              <i class="fa-solid fa-brain"></i>
+              <span class="sm-val">AI / ML</span>
+              <span class="sm-lbl">Specialization</span>
+            </div>
+            <div class="stat-mini">
+              <i class="fa-solid fa-code"></i>
+              <span class="sm-val">3+</span>
+              <span class="sm-lbl">Projects</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section skills" id="skills">
+    <div class="section-track">
+      <div class="section-num">02</div>
+    </div>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Expertise</span>
+        <h2 class="section-title">What I Work With</h2>
+      </div>
+
+      <div class="skills-layout">
+        <div class="skill-feature reveal delay-1">
+          <div class="sf-icon"><i class="fa-brands fa-python"></i></div>
+          <div class="sf-content">
+            <h3>Python</h3>
+            <p>Core language for scripting, data processing, and AI/ML prototyping.</p>
+            <div class="sf-bar"><div class="sf-fill sf-fill-85"></div></div>
+            <span class="sf-pct">85%</span>
+          </div>
+        </div>
+
+        <div class="skills-secondary">
+          <div class="skill-tile reveal delay-2">
+            <div class="st-icon"><i class="fa-solid fa-database"></i></div>
+            <h3>SQL</h3>
+            <p>Querying and managing relational databases for data-driven applications.</p>
+          </div>
+          <div class="skill-tile reveal delay-3">
+            <div class="st-icon"><i class="fa-solid fa-brain"></i></div>
+            <h3>Artificial Intelligence</h3>
+            <p>Foundational ML concepts, model thinking, and practical AI application design.</p>
+          </div>
+          <div class="skill-tile reveal delay-4">
+            <div class="st-icon"><i class="fa-solid fa-layer-group"></i></div>
+            <h3>Full Stack Dev</h3>
+            <p>Building end-to-end web solutions — from responsive UIs to server-side logic.</p>
+          </div>
+          <div class="skill-tile reveal delay-5">
+            <div class="st-icon"><i class="fa-solid fa-comments"></i></div>
+            <h3>Communication</h3>
+            <p>Bridging technical and business perspectives with clarity and confidence.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section projects" id="projects">
+    <div class="section-track">
+      <div class="section-num">03</div>
+    </div>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Work</span>
+        <h2 class="section-title">What I've Built</h2>
+      </div>
+
+      <div class="projects-grid">
+
+        <div class="project-card project-featured reveal delay-1">
+          <div class="pc-accent pc-accent-1"></div>
+          <div class="pc-body">
+            <div class="pc-tags">
+              <span class="pc-tag">Python</span>
+              <span class="pc-tag">NLP</span>
+              <span class="pc-tag">AI</span>
+            </div>
+            <h3>Smart Sentiment Analyzer</h3>
+            <p>A Python-based NLP tool that analyzes product reviews and classifies sentiment in real time using basic ML techniques.</p>
+            <div class="pc-icon-large"><i class="fa-solid fa-brain"></i></div>
+          </div>
+          <div class="pc-footer">
+            <a href="#" class="btn-outline">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <span class="pc-num">01</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal delay-2">
+          <div class="pc-accent pc-accent-2"></div>
+          <div class="pc-body">
+            <div class="pc-tags">
+              <span class="pc-tag">SQL</span>
+              <span class="pc-tag">Data</span>
+            </div>
+            <h3>Student Performance Dashboard</h3>
+            <p>A data analysis project using SQL queries and visualization to track and report academic performance trends.</p>
+            <div class="pc-icon-large"><i class="fa-solid fa-chart-bar"></i></div>
+          </div>
+          <div class="pc-footer">
+            <a href="#" class="btn-outline">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <span class="pc-num">02</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal delay-3">
+          <div class="pc-accent pc-accent-3"></div>
+          <div class="pc-body">
+            <div class="pc-tags">
+              <span class="pc-tag">HTML</span>
+              <span class="pc-tag">CSS</span>
+              <span class="pc-tag">JS</span>
+            </div>
+            <h3>Personal Portfolio Website</h3>
+            <p>This very site — designed from scratch with a clean beige-brown palette, smooth animations, and full responsiveness.</p>
+            <div class="pc-icon-large"><i class="fa-solid fa-globe"></i></div>
+          </div>
+          <div class="pc-footer">
+            <a href="#" class="btn-outline">View Project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+            <span class="pc-num">03</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section class="section education" id="education">
+    <div class="section-track">
+      <div class="section-num">04</div>
+    </div>
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Background</span>
+        <h2 class="section-title">Academic Journey</h2>
+      </div>
+
+      <div class="timeline reveal delay-1">
+        <div class="tl-line"></div>
+        <div class="tl-item">
+          <div class="tl-dot"></div>
+          <div class="tl-card">
+            <div class="tl-year">2024 — 2028</div>
+            <div class="tl-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <h3>Saveetha School of Engineering</h3>
+            <p class="tl-degree">Bachelor of Technology — Computer Science (AI &amp; ML)</p>
+            <div class="tl-cgpa">
+              <span class="cgpa-label">CGPA</span>
+              <span class="cgpa-val">8.9</span>
+              <div class="cgpa-dots">
+                <span class="dot filled"></span><span class="dot filled"></span>
+                <span class="dot filled"></span><span class="dot filled"></span>
+                <span class="dot filled"></span><span class="dot filled"></span>
+                <span class="dot filled"></span><span class="dot filled"></span>
+                <span class="dot half"></span><span class="dot"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section contact" id="contact">
+    <div class="contact-dark-bg"></div>
+    <div class="container contact-inner">
+      <div class="contact-left reveal">
+        <span class="section-label light">05 — Contact</span>
+        <h2 class="section-title light">Let's<br/>Connect</h2>
+        <p class="contact-sub">Open to internships, collaborations, and new challenges. Reach out anytime — I respond fast.</p>
+        <div class="contact-tagline">
+          <i class="fa-solid fa-location-dot"></i>
+          <span>Saveetha University, Chennai</span>
+        </div>
+      </div>
+
+      <div class="contact-right reveal delay-2">
+        <a href="tel:9392514439" class="contact-card">
+          <div class="cc-icon"><i class="fa-solid fa-phone"></i></div>
+          <div class="cc-text">
+            <span class="cc-label">Phone</span>
+            <span class="cc-val">9392514439</span>
+          </div>
+          <i class="fa-solid fa-arrow-right cc-arrow"></i>
+        </a>
+        <a href="mailto:vivekakkisetty@gmail.com" class="contact-card">
+          <div class="cc-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div class="cc-text">
+            <span class="cc-label">Email</span>
+            <span class="cc-val">vivekakkisetty@gmail.com</span>
+          </div>
+          <i class="fa-solid fa-arrow-right cc-arrow"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/vivekakkisetty" target="_blank" rel="noopener" class="contact-card">
+          <div class="cc-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+          <div class="cc-text">
+            <span class="cc-label">LinkedIn</span>
+            <span class="cc-val">linkedin.com/in/vivekakkisetty</span>
+          </div>
+          <i class="fa-solid fa-arrow-right cc-arrow"></i>
+        </a>
+        <div class="contact-availability">
+          <span class="avail-dot"></span>
+          Available for opportunities
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="footer-logo">VA</span>
+      <p>© <span id="year"></span> Vivek Akkisetty — Crafted with care &amp; code.</p>
+      <div class="footer-links">
+        <a href="mailto:vivekakkisetty@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/vivekakkisetty" target="_blank" rel="noopener" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
