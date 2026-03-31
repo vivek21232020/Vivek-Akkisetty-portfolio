@@ -692,9 +692,9 @@ body:has(button:hover) .cursor-follower { width: 46px; height: 46px; border-colo
    SKILLS
 ══════════════════════════════════════ */
 .skills-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 1.8rem;
+  align-items: stretch;
 }
 
 .skill-feature {
@@ -706,10 +706,10 @@ body:has(button:hover) .cursor-follower { width: 46px; height: 46px; border-colo
   gap: 1.5rem;
   box-shadow: var(--shadow-xl);
   color: var(--beige);
-  grid-row: span 2;
+  flex: 0 0 45%;
   position: relative;
   overflow: hidden;
-  min-height: 400px;
+  min-height: 380px;
 }
 .skill-feature::before {
   content: '';
@@ -760,6 +760,7 @@ body:has(button:hover) .cursor-follower { width: 46px; height: 46px; border-colo
 }
 
 .skills-secondary {
+  flex: 1;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.8rem;
@@ -1244,8 +1245,7 @@ body:has(button:hover) .cursor-follower { width: 46px; height: 46px; border-colo
   .about-layout { grid-template-columns: 1fr; gap: 3rem; }
   .about-stats-panel { position: static; }
   .stat-row { gap: 0.8rem; }
-  .skills-layout { grid-template-columns: 1fr; }
-  .skill-feature { grid-row: unset; }
+  .skills-layout { flex-direction: column; }
   .projects-grid { grid-template-columns: 1fr 1fr; }
   .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
 }
