@@ -1223,12 +1223,22 @@ body:has(button:hover) .cursor-follower { width: 46px; height: 46px; border-colo
 ══════════════════════════════════════ */
 .reveal {
   opacity: 0;
-  transform: translateY(36px);
-  transition: opacity 0.75s ease, transform 0.75s ease;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+/* Fallback: if JS never fires, show content after 2s via animation */
+@keyframes fallbackShow {
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  animation: fallbackShow 0s 2.5s forwards;
+}
+.reveal.visible {
+  animation: none;
 }
 .delay-1 { transition-delay: 0.1s; }
 .delay-2 { transition-delay: 0.2s; }
@@ -1237,6 +1247,17 @@ body:has(button:hover) .cursor-follower { width: 46px; height: 46px; border-colo
 .delay-5 { transition-delay: 0.55s; }
 
 
+
+/* ── If JS loads, gate animations; if not, show everything ── */
+html:not(.js) .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Hero reveals trigger immediately on load (already in viewport) */
+.hero .reveal {
+  animation: fallbackShow 0s 0.1s forwards;
+}
 /* ══════════════════════════════════════
    RESPONSIVE
 ══════════════════════════════════════ */

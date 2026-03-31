@@ -3,6 +3,9 @@
    JavaScript: Cursor, Scroll, Nav, Animations
 ═══════════════════════════════════════════════ */
 
+/* ── Run immediately: mark body as JS-enabled ── */
+document.documentElement.classList.add('js');
+
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ── Dynamic Year ── */
@@ -10,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
 
-  /* ── Custom Cursor ── */
+  /* ── Custom Cursor (desktop only) ── */
   const cursor   = document.getElementById('cursor');
   const follower = document.getElementById('cursorFollower');
   let mouseX = 0, mouseY = 0;
@@ -23,10 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
       cursor.style.left = mouseX + 'px';
       cursor.style.top  = mouseY + 'px';
 
-      // Hide follower when in navbar zone (top 90px) to avoid visual clutter
       const inNavZone = mouseY < 90;
-      follower.style.opacity = inNavZone ? '0' : '1';
       cursor.style.opacity   = inNavZone ? '0' : '1';
+      follower.style.opacity = inNavZone ? '0' : '1';
     });
 
     const animateCursor = () => {
@@ -55,16 +57,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const sections = document.querySelectorAll('section[id]');
 
   const onScroll = () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 20);
+    if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 20);
 
     let current = '';
     sections.forEach(sec => {
-      const top = sec.offsetTop - 100;
-      if (window.scrollY >= top) current = sec.getAttribute('id');
+      if (window.scrollY >= sec.offsetTop - 100) {
+        current = sec.getAttribute('id');
+      }
     });
-
     navItems.forEach(item => {
-      const href = item.getAttribute('href').replace('#', '');
+      const href = (item.getAttribute('href') || '').replace('#', '');
       item.classList.toggle('active', href === current);
     });
   };
@@ -73,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
   onScroll();
 
 
-  /* ── Mobile Menu Toggle ── */
+  /* ── Mobile Menu ── */
   const hamburger = document.getElementById('hamburger');
   const navLinks  = document.getElementById('navLinks');
 
@@ -83,7 +85,6 @@ document.addEventListener('DOMContentLoaded', () => {
       navLinks.classList.toggle('open');
       document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
     });
-
     navItems.forEach(item => {
       item.addEventListener('click', () => {
         hamburger.classList.remove('open');
@@ -100,39 +101,39 @@ document.addEventListener('DOMContentLoaded', () => {
       const target = document.querySelector(anchor.getAttribute('href'));
       if (!target) return;
       e.preventDefault();
-      const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h')) || 72;
-      const offset = target.getBoundingClientRect().top + window.scrollY - navH;
-      window.scrollTo({ top: offset, behavior: 'smooth' });
+      const navH = 72;
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - navH, behavior: 'smooth' });
     });
   });
 
 
-  /* ── Intersection Observer: reveal on scroll ── */
-  const revealEls = document.querySelectorAll('.reveal');
+  /* ── Reveal on scroll (Intersection Observer) ── */
+  const makeObserver = () => {
+    return new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Cancel the CSS fallback animation now that JS has handled it
+            entry.target.style.animation = 'none';
+          }
+        });
+      },
+      { threshold: 0.08, rootMargin: '0px 0px -30px 0px' }
+    );
+  };
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-  );
+  const observer = makeObserver();
 
-  revealEls.forEach(el => observer.observe(el));
+  /* Reveal all .reveal elements */
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-
-  /* ── Staggered card reveals ── */
-  const staggerGroups = [
-    { selector: '.skill-tile',    delay: 0.1 },
-    { selector: '.project-card',  delay: 0.12 },
-    { selector: '.contact-card',  delay: 0.1 },
-  ];
-
-  staggerGroups.forEach(({ selector, delay }) => {
+  /* Staggered cards */
+  [
+    { selector: '.skill-tile',   delay: 0.08 },
+    { selector: '.project-card', delay: 0.1  },
+    { selector: '.contact-card', delay: 0.08 },
+  ].forEach(({ selector, delay }) => {
     document.querySelectorAll(selector).forEach((el, i) => {
       if (!el.classList.contains('reveal')) {
         el.classList.add('reveal');
@@ -143,24 +144,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ── Animated progress bars (triggered on visibility) ── */
+  /* ── Animated progress bars ── */
   const barObserver = new IntersectionObserver(
     entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          const fills = entry.target.querySelectorAll('.stat-fill, .sf-fill');
-          fills.forEach(fill => {
-            const target = fill.style.width;
+          entry.target.querySelectorAll('.stat-fill, .sf-fill').forEach(fill => {
+            const w = fill.style.width;
             fill.style.width = '0%';
-            requestAnimationFrame(() => {
-              setTimeout(() => { fill.style.width = target; }, 100);
-            });
+            setTimeout(() => { fill.style.width = w; }, 150);
           });
           barObserver.unobserve(entry.target);
         }
       });
     },
-    { threshold: 0.4 }
+    { threshold: 0.3 }
   );
 
   document.querySelectorAll('.about-stats-panel, .skill-feature').forEach(el => {
@@ -168,23 +166,23 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 
-  /* ── Hero name letter animation ── */
+  /* ── Hero name hover letter animation ── */
   document.querySelectorAll('.name-line').forEach(line => {
     const text = line.textContent.trim();
     line.innerHTML = text.split('').map(ch =>
-      `<span style="display:inline-block;transition:transform 0.4s ease,opacity 0.4s ease">${ch === ' ' ? '&nbsp;' : ch}</span>`
+      `<span style="display:inline-block;transition:transform 0.35s ease,color 0.35s ease">${ch === ' ' ? '&nbsp;' : ch}</span>`
     ).join('');
 
     line.addEventListener('mouseenter', () => {
       line.querySelectorAll('span').forEach((span, i) => {
         setTimeout(() => {
-          span.style.transform = `translateY(-6px)`;
+          span.style.transform = 'translateY(-5px)';
           span.style.color = 'var(--brown)';
           setTimeout(() => {
             span.style.transform = '';
             span.style.color = '';
-          }, 350);
-        }, i * 40);
+          }, 320);
+        }, i * 35);
       });
     });
   });
@@ -194,8 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroBg = document.querySelector('.hero-bg-word');
   if (heroBg) {
     window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      heroBg.style.transform = `translateY(${y * 0.15}px)`;
+      heroBg.style.transform = `translateY(${window.scrollY * 0.15}px)`;
     }, { passive: true });
   }
 
