@@ -22,11 +22,16 @@ document.addEventListener('DOMContentLoaded', () => {
       mouseY = e.clientY;
       cursor.style.left = mouseX + 'px';
       cursor.style.top  = mouseY + 'px';
+
+      // Hide follower when in navbar zone (top 90px) to avoid visual clutter
+      const inNavZone = mouseY < 90;
+      follower.style.opacity = inNavZone ? '0' : '1';
+      cursor.style.opacity   = inNavZone ? '0' : '1';
     });
 
     const animateCursor = () => {
-      followerX += (mouseX - followerX) * 0.1;
-      followerY += (mouseY - followerY) * 0.1;
+      followerX += (mouseX - followerX) * 0.09;
+      followerY += (mouseY - followerY) * 0.09;
       follower.style.left = followerX + 'px';
       follower.style.top  = followerY + 'px';
       requestAnimationFrame(animateCursor);
